@@ -38,6 +38,10 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: true
+  image_path: "lib/icons/app_icon.png"
+  adaptive_icon_foreground: "lib/icons/adaptive_icon_foreground.png"
   flutter_lints: ^3.0.0
 
 flutter:

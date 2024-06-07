@@ -144,7 +144,6 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   }
 
   void pressDayButton(DayButtonEvent event, Emitter<TasksState> emit) async {
-    emit(TasksLoadingState());
     await updateNotCompleted();
     selectedDay = event.selectedDay;
     mainBloc.selectedDay = selectedDay;
@@ -255,6 +254,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       if (filterEnabled) {
         add(ApplyFilterEvent(context: event.context));
       } else {
+        emit(TasksLoadingState());
         add(DayButtonEvent(selectedDay: selectedDay));
         emit(TasksInitialState(
           month: selectedMonth,

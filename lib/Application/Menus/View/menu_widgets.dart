@@ -346,7 +346,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           // #color_image
           const SizedBox(width: 10),
           const Image(
-            image: AssetImage('assets/icons/ic_flag_uz.png'),
+            image: AssetImage('assets/icons/ic_app.png'),
             width: 24,
             height: 24,
             fit: BoxFit.fill,
@@ -470,6 +470,7 @@ class MyNewTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(

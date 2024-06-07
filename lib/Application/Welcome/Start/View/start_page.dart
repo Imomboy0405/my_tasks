@@ -7,7 +7,6 @@ import 'package:my_tasks/Data/Services/lang_service.dart';
 
 import '../Bloc/start_bloc.dart';
 
-
 class StartPage extends StatelessWidget {
   static const id = '/start_page';
 
@@ -17,30 +16,35 @@ class StartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => StartBloc(),
-      child: BlocBuilder<StartBloc, StartState>(builder: (context, state) {
+      child: BlocBuilder<StartBloc, StartState>(
+        builder: (context, state) {
           StartBloc bloc = context.read<StartBloc>();
           return Scaffold(
+            backgroundColor: AppColors.black,
+            appBar: AppBar(
+              elevation: 0,
+              toolbarHeight: 91,
               backgroundColor: AppColors.black,
-              appBar: AppBar(
-                elevation: 0,
-                toolbarHeight: 91,
-                backgroundColor: AppColors.black,
 
-                // #flag
-                actions: [
-                 MyFlagButton(currentLang: bloc.selectedLang, pageContext: context, pageName: id),
-                ],
+              // #flag
+              actions: [
+                MyFlagButton(currentLang: bloc.selectedLang, pageContext: context, pageName: id),
+              ],
 
-                // #IBilling
-                title: Text('My Tasks', style: AppTextStyles.style0_1(context)),
-                leadingWidth: 60,
-              ),
-              body: Column(
+              // #IBilling
+              title: Text('My Tasks', style: AppTextStyles.style0_1(context)),
+              leadingWidth: 60,
+            ),
+            body: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   DefaultTabController(
                     length: 3,
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.55,
@@ -52,34 +56,34 @@ class StartPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        TabPageSelector(
-                          indicatorSize: 8,
-                          color: AppColors.darkGrey,
-                          selectedColor: AppColors.blue,
-                          borderStyle: BorderStyle.none,
+                        SizedBox(
+                          height: 20,
+                          width: 50,
+                          child: TabPageSelector(
+                            indicatorSize: 8,
+                            color: AppColors.darkGrey,
+                            selectedColor: AppColors.blue,
+                            borderStyle: BorderStyle.none,
+                          ),
                         ),
                       ],
                     ),
                   ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.08),
                   Container(
-                    padding:
-                        const EdgeInsets.only(bottom: 48, right: 24, left: 24),
+                    padding: const EdgeInsets.only(bottom: 48, right: 24, left: 24),
                     height: 160,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // #next
                         MaterialButton(
-                          onPressed: () => context
-                              .read<StartBloc>()
-                              .add(NextEvent(context: context)),
+                          onPressed: () => context.read<StartBloc>().add(NextEvent(context: context)),
                           color: AppColors.blue,
                           minWidth: double.infinity,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6)),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
                           height: 48,
-                          child:
-                              Text('log_in'.tr(), style: AppTextStyles.style4(context).copyWith(color: Colors.white)),
+                          child: Text('log_in'.tr(), style: AppTextStyles.style4(context).copyWith(color: Colors.white)),
                         ),
                         const Spacer(),
 
@@ -93,7 +97,9 @@ class StartPage extends StatelessWidget {
                     ),
                   ),
                 ],
-              ));
+              ),
+            ),
+          );
         },
       ),
     );

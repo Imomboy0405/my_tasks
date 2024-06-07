@@ -86,12 +86,12 @@ class SinglePage extends StatelessWidget {
                         controller: bloc.controller,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             // #task
                             Container(
                               margin: const EdgeInsets.all(16),
                               padding: const EdgeInsets.all(20),
-                              height: 310,
                               decoration: BoxDecoration(
                                 color: AppColors.dark,
                                 borderRadius: BorderRadius.circular(6),
@@ -106,47 +106,38 @@ class SinglePage extends StatelessWidget {
                               ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   // #title
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '${'title'.tr()}:  ',
-                                        style: AppTextStyles.style19(context),
-                                      ),
-                                      Flexible(
-                                        child: Text(
-                                          bloc.taskModel.title!,
+                                  RichText(
+                                    text: TextSpan(
+                                      text: '${'title'.tr()}:  ',
+                                      style: AppTextStyles.style19(context),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: bloc.taskModel.title,
                                           style: AppTextStyles.style23(context),
-                                          softWrap: true,
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
+                                  SizedBox(height: 5),
 
                                   // #content
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        flex: 1,
-                                        child: Text(
-                                          '${'content'.tr()}:  ',
-                                          style: AppTextStyles.style19(context),
-                                          softWrap: true,
-                                        ),
-                                      ),
-                                      Flexible(
-                                        flex: 2,
-                                        child: Text(
-                                          '${bloc.taskModel.content}',
+                                  RichText(
+                                    text: TextSpan(
+                                      text: '${'content'.tr()}:  ',
+                                      style: AppTextStyles.style19(context),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: bloc.taskModel.content,
                                           style: AppTextStyles.style23(context),
-                                          softWrap: true,
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
+                                  SizedBox(height: 5),
 
                                   // #status
                                   Row(
@@ -162,6 +153,7 @@ class SinglePage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(height: 5),
 
                                   // #created_time
                                   Row(
@@ -173,6 +165,7 @@ class SinglePage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(height: 5),
 
                                   // #start_time
                                   Row(
@@ -184,6 +177,7 @@ class SinglePage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(height: 5),
 
                                   // #end_time
                                   Row(
@@ -201,7 +195,7 @@ class SinglePage extends StatelessWidget {
 
                             // #delete_create_buttons
                             Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                                padding: const EdgeInsets.fromLTRB(16, 4, 16, 32),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [

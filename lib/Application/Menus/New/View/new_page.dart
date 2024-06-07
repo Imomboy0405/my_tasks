@@ -29,6 +29,7 @@ class NewPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       // #task_title
                       MyNewTextField(
@@ -61,8 +62,10 @@ class NewPage extends StatelessWidget {
 
                       // #date_buttons
                       Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               MyDateButton(
                                 onPressed: () => bloc.add(ShowDatePickerEvent(context: context)),
