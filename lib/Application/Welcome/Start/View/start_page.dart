@@ -57,10 +57,9 @@ class StartPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
-                          width: 50,
+                          height: 20  ,
+                          width: 60,
                           child: TabPageSelector(
-                            indicatorSize: 8,
                             color: AppColors.darkGrey,
                             selectedColor: AppColors.blue,
                             borderStyle: BorderStyle.none,

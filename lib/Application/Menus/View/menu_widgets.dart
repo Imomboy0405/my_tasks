@@ -478,33 +478,36 @@ class MyNewTextField extends StatelessWidget {
           style: controller.text.isNotEmpty || focusNode.hasFocus ? AppTextStyles.style26(context) : AppTextStyles.style25(context),
         ),
         const SizedBox(height: 4),
-        TextField(
-          controller: controller,
-          focusNode: focusNode,
-          onChanged: (v) => onChanged(),
-          onTap: () => onChanged(),
-          onSubmitted: (v) => onSubmitted(),
-          style: AppTextStyles.style13(context),
-          cursorColor: AppColors.white,
-          maxLines: null,
-          keyboardType: textInputType,
-          textInputAction: TextInputAction.next,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.only(left: 15, right: 10, top: 10, bottom: 10),
-            suffixIcon: controller.text.isNotEmpty || focusNode.hasFocus
-                ? IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () => !suffixIconDone ? Utils.mySnackBar(context: context, txt: snackBarText, errorState: true) : {},
-                    icon: suffixIconDone ? Icon(Icons.done, color: AppColors.white) : const Icon(Icons.error_outline, color: AppColors.red),
-                  )
-                : const SizedBox.shrink(),
-            enabledBorder: myInputBorder(
-              itsColor1: controller.text.isNotEmpty || focusNode.hasFocus,
-              color1: AppColors.white,
-              color2: AppColors.gray,
+        Container(
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * .22),
+          child: TextField(
+            controller: controller,
+            focusNode: focusNode,
+            onChanged: (v) => onChanged(),
+            onTap: () => onChanged(),
+            onSubmitted: (v) => onSubmitted(),
+            style: AppTextStyles.style13(context),
+            cursorColor: AppColors.white,
+            maxLines: null,
+            keyboardType: textInputType,
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.only(left: 15, right: 10, top: 10, bottom: 10),
+              suffixIcon: controller.text.isNotEmpty || focusNode.hasFocus
+                  ? IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () => !suffixIconDone ? Utils.mySnackBar(context: context, txt: snackBarText, errorState: true) : {},
+                      icon: suffixIconDone ? Icon(Icons.done, color: AppColors.white) : const Icon(Icons.error_outline, color: AppColors.red),
+                    )
+                  : const SizedBox.shrink(),
+              enabledBorder: myInputBorder(
+                itsColor1: controller.text.isNotEmpty || focusNode.hasFocus,
+                color1: AppColors.white,
+                color2: AppColors.gray,
+              ),
+              focusedBorder: myInputBorder(color1: AppColors.white),
+              errorBorder: myInputBorder(color1: AppColors.red),
             ),
-            focusedBorder: myInputBorder(color1: AppColors.white),
-            errorBorder: myInputBorder(color1: AppColors.red),
           ),
         ),
         const SizedBox(height: 20),
@@ -652,7 +655,7 @@ class MyDateButton extends StatelessWidget {
       color: AppColors.dark,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       child: SizedBox(
-        width: 135,
+        width: 140,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -1025,8 +1028,7 @@ class MyTaskContainer extends StatelessWidget {
             // #title_created_time
             Row(
               children: [
-                Text(taskModel!.title!, style: AppTextStyles.style19(context)),
-                const Spacer(),
+                Expanded(child: Text(taskModel!.title!, style: AppTextStyles.style19(context), maxLines: 1)),
                 Text(taskModel!.createdTime!.toString().substring(0, 16), style: AppTextStyles.style23(context)),
               ],
             ),
