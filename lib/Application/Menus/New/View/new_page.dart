@@ -6,6 +6,7 @@ import 'package:my_tasks/Application/Menus/View/menu_widgets.dart';
 import 'package:my_tasks/Configuration/app_colors.dart';
 import 'package:my_tasks/Configuration/app_text_styles.dart';
 import 'package:my_tasks/Data/Services/lang_service.dart';
+import 'package:my_tasks/Data/Services/logic_service.dart';
 
 class NewPage extends StatelessWidget {
   static const id = '/new_page';
@@ -64,24 +65,15 @@ class NewPage extends StatelessWidget {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              MyDateButton(
-                                onPressed: () => bloc.add(ShowDatePickerEvent(context: context)),
-                                text: bloc.startDate.toString().substring(0, 16),
-                              ),
-                              MyDateButton(
-                                onPressed: () => bloc.add(ShowDatePickerEvent(context: context, toDate: true)),
-                                text: bloc.endDate != null ? bloc.endDate.toString().substring(0, 16) : 'to'.tr(),
-                              ),
-                            ],
+                          MyDateButton(
+                            onPressed: () => bloc.add(ShowDatePickerEvent(context: context, toDate: true)),
+                            text: bloc.endDate != null ? bloc.endDate.toString().substring(0, 16) : 'to'.tr(),
                           ),
                           Container(height: 2, width: 8, color: AppColors.white, margin: const EdgeInsets.symmetric(horizontal: 10)),
                           Flexible(
                             child: Text(
-                              '${bloc.day} ${'day'.tr()} ${bloc.hour} ${'hour'.tr()} ${bloc.minute} ${'minute'.tr()} ',
-                              style: bloc.endDate != null ? AppTextStyles.style26(context) : AppTextStyles.style25(context),
+                              bloc.endDate != null ? LogicService.difference(endDate: bloc.endDate!, startDate: bloc.startDate) : 'set_deadline'.tr(),
+                              style: AppTextStyles.style26(context),
                             ),
                           ),
                         ],

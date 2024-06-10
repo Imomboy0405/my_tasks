@@ -161,7 +161,6 @@ class NewBloc extends Bloc<NewEvent, NewState> {
         title: titleController.text.trim(),
         content: contentController.text.trim(),
         createdTime: DateTime.now(),
-        startDate: startDate,
         endDate: endDate,
         status: TaskStatus.inProcess,
         id: 'task_${DateTime.now().toString()}',

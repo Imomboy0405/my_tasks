@@ -12,6 +12,7 @@ class Utils {
       SnackBar(
         backgroundColor: AppColors.transparent,
         elevation: 0,
+        duration: Duration(milliseconds: 1500),
         content: Container(
           width: MediaQuery.of(context).size.width - 100,
           height: 44,

@@ -47,7 +47,7 @@ class StartPage extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.55,
+                          height: MediaQuery.of(context).size.height * 0.58,
                           child: const TabBarView(
                             children: [
                               StartView(img: 1),
@@ -57,13 +57,9 @@ class StartPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 20  ,
+                          height: 20 ,
                           width: 60,
-                          child: TabPageSelector(
-                            color: AppColors.darkGrey,
-                            selectedColor: AppColors.blue,
-                            borderStyle: BorderStyle.none,
-                          ),
+                          child: TabPageSelector(),
                         ),
                       ],
                     ),
@@ -144,7 +140,7 @@ class StartView extends StatelessWidget {
             ),
 
             Container(
-              height: MediaQuery.of(context).size.height * 0.22,
+              height: MediaQuery.of(context).size.height * .25,
               padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

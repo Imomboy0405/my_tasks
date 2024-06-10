@@ -497,7 +497,8 @@ class MyNewTextField extends StatelessWidget {
                   ? IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () => !suffixIconDone ? Utils.mySnackBar(context: context, txt: snackBarText, errorState: true) : {},
-                      icon: suffixIconDone ? Icon(Icons.done, color: AppColors.white) : const Icon(Icons.error_outline, color: AppColors.red),
+                      icon:
+                          suffixIconDone ? Icon(Icons.done, color: AppColors.white) : const Icon(Icons.error_outline, color: AppColors.red),
                     )
                   : const SizedBox.shrink(),
               enabledBorder: myInputBorder(
@@ -655,7 +656,7 @@ class MyDateButton extends StatelessWidget {
       color: AppColors.dark,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       child: SizedBox(
-        width: 140,
+        width: 150,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -790,7 +791,7 @@ class MyFilterPage extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // #paid
+                          // #notCompleted
                           MyFilterDatePickerButton(
                             text: 'notCompleted'.tr(),
                             onPressed: () => pressStatus(TaskStatus.notCompleted),
@@ -798,7 +799,7 @@ class MyFilterPage extends StatelessWidget {
                           ),
                           const SizedBox(width: 10),
 
-                          // #rejected_iq
+                          // #completed
                           MyFilterDatePickerButton(
                             text: 'completed'.tr(),
                             onPressed: () => pressStatus(TaskStatus.completed),
@@ -806,18 +807,12 @@ class MyFilterPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // #in_process
-                          MyFilterDatePickerButton(
-                            text: 'inProcess'.tr(),
-                            onPressed: () => pressStatus(TaskStatus.inProcess),
-                            selected: filterInProcess,
-                          ),
-                        ],
+                      // #inProcess
+                      MyFilterDatePickerButton(
+                        text: 'inProcess'.tr(),
+                        onPressed: () => pressStatus(TaskStatus.inProcess),
+                        selected: filterInProcess,
                       ),
-                      const SizedBox(height: 12),
                       const Spacer(),
                       Row(
                         children: [
@@ -958,22 +953,22 @@ class MyTaskContainer extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
             child: Dismissible(
-                    key: Key(taskModel!.id!),
-                    direction: DismissDirection.endToStart,
-                    confirmDismiss: (direction) async => await dismissibleFunc!(),
-                    background: Container(
-                      alignment: Alignment.centerRight,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text('delete'.tr(), style: AppTextStyles.style23_2(context)),
-                          const SizedBox(width: 5),
-                          const Icon(Icons.delete_sweep, color: AppColors.red, size: 32),
-                        ],
-                      ),
-                    ),
-                    child: taskContainerChild(context),
-                  ),
+              key: Key(taskModel!.id!),
+              direction: DismissDirection.endToStart,
+              confirmDismiss: (direction) async => await dismissibleFunc!(),
+              background: Container(
+                alignment: Alignment.centerRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text('delete'.tr(), style: AppTextStyles.style23_2(context)),
+                    const SizedBox(width: 5),
+                    const Icon(Icons.delete_sweep, color: AppColors.red, size: 32),
+                  ],
+                ),
+              ),
+              child: taskContainerChild(context),
+            ),
           ),
         ),
       ),
@@ -1025,29 +1020,34 @@ class MyTaskContainer extends StatelessWidget {
             ),
             const SizedBox(height: 5),
 
-            // #title_created_time
-            Row(
-              children: [
-                Expanded(child: Text(taskModel!.title!, style: AppTextStyles.style19(context), maxLines: 1)),
-                Text(taskModel!.createdTime!.toString().substring(0, 16), style: AppTextStyles.style23(context)),
-              ],
-            ),
+            // #title
+            Text(taskModel!.title!, style: AppTextStyles.style19(context), maxLines: 1),
 
-            // #content_start_date
+            // #content_created_time
             Row(
               children: [
                 Expanded(child: Text(taskModel!.content.toString(), style: AppTextStyles.style23(context), maxLines: 2)),
-                Text(taskModel!.startDate!.toString().substring(0, 16),
+                Text(taskModel!.createdTime!.toString().substring(0, 16),
                     style: AppTextStyles.style25_2(context).copyWith(color: AppColors.blue)),
               ],
             ),
 
             // #end_date
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(CupertinoIcons.clock_fill, color: AppColors.blue, size: 18),
-                Text(LogicService.difference(endDate: taskModel!.endDate!), style: AppTextStyles.style19(context)),
-                const Spacer(),
+                Flexible(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(CupertinoIcons.clock_fill, color: AppColors.blue, size: 18),
+                      Flexible(
+                        child: Text(LogicService.difference(endDate: taskModel!.endDate!),
+                            style: AppTextStyles.style19(context), overflow: TextOverflow.ellipsis),
+                      ),
+                    ],
+                  ),
+                ),
                 Text(taskModel!.endDate!.toString().substring(0, 16),
                     style: AppTextStyles.style25_2(context).copyWith(color: AppColors.red)),
               ],

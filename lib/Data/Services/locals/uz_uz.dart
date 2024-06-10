@@ -18,7 +18,7 @@ const Map<String, String> uzUZ = {
   /// ProfilePage
   'profile': 'Profil',
   'my_tasks_user': 'My Tasks foydalanuvchisi',
-  'date_sign': 'Ro\'yxatdan o\'tish sanasi',
+  'date_sign': 'Avtorizatsiya sanasi',
   'current_lang': 'O\'zbek (lotin)',
   'cancel': 'Bekor qilish',
   'done': 'Bajarildi',
@@ -32,7 +32,7 @@ const Map<String, String> uzUZ = {
   /// NewPage
   'new': 'Yaratish',
   'title': 'Nomi',
-  'content': 'Izoh',
+  'content': 'Tavsif',
   'save_task': 'Vazifani saqlash',
   'new_task': 'Yangi vazifa',
   'fill_all_forms': 'Barcha oynalarni to\'ldiring!',
@@ -45,6 +45,7 @@ const Map<String, String> uzUZ = {
   'minute': 'daqiqa',
   'error_time': 'Avvalgi vaqtni tanlash mumkin emas!',
   'task_saved': 'Vazifa muvofaqqiyatli saqlandi',
+  'set_deadline': 'Muddatni belgilang',
 
   /// TasksPage
   'tasks': 'Vazifalar',
@@ -76,6 +77,8 @@ const Map<String, String> uzUZ = {
   'apply_filter': 'Amalga oshirish',
   'tasks_not_found': 'Vazifalar mavjud emas',
   'delete': 'O\'chirish',
+  'an_unfulfilled_task': 'Bajarilmagan vazifa',
+  'set_status': 'Status tanlang!',
 
   /// SinglePage
   'delete_task': 'Vazifani o\'chirish',

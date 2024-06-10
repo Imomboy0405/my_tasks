@@ -167,18 +167,6 @@ class SinglePage extends StatelessWidget {
                                   ),
                                   SizedBox(height: 5),
 
-                                  // #start_time
-                                  Row(
-                                    children: [
-                                      Text('${'start_date'.tr()}:  ', style: AppTextStyles.style19(context)),
-                                      Text(
-                                        bloc.taskModel.startDate!.toString().substring(0,16),
-                                        style: AppTextStyles.style23(context),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 5),
-
                                   // #end_time
                                   Row(
                                     children: [

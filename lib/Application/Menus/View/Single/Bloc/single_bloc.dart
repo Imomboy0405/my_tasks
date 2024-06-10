@@ -47,11 +47,14 @@ class SingleBloc extends Bloc<SingleEvent, SingleState> {
       if (taskModel.status! == TaskStatus.completed) {
         completed = true;
       }
-      initial = false;
       emit(SingleInitialState(
         completed: completed,
         taskModel: taskModel,
       ));
+      if (!initial) {
+        Navigator.pop(event.context, taskModel);
+      }
+      initial = false;
   }
 
   Future<void> pressDeleteButton(DeleteButtonEvent event, Emitter<SingleState> emit) async {

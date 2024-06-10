@@ -3,10 +3,10 @@ import 'package:my_tasks/Data/Services/lang_service.dart';
 
 class LogicService {
 
-  static String difference({required DateTime endDate}) {
-  int day = endDate.difference(DateTime.now()).inDays;
-  int hour = endDate.difference(DateTime.now()).inHours % 24;
-  int minute = endDate.difference(DateTime.now()).inMinutes % 60;
+  static String difference({required DateTime endDate, DateTime? startDate}) {
+  int day = endDate.difference(startDate ?? DateTime.now()).inDays;
+  int hour = endDate.difference(startDate ?? DateTime.now()).inHours % 24;
+  int minute = endDate.difference(startDate ?? DateTime.now()).inMinutes % 60;
   return '${day > 0 ? " $day ${'day'.tr()}" : ''} ${hour > 0 ? "$hour ${'hour'.tr()}" : ''} ${minute > 0 ? "$minute ${'minute'.tr()}" : ''}';
 }
 

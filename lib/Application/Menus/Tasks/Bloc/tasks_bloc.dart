@@ -8,6 +8,7 @@ import 'package:my_tasks/Data/Models/task_model.dart';
 import 'package:my_tasks/Data/Models/user_model.dart';
 import 'package:my_tasks/Data/Services/db_service.dart';
 import 'package:my_tasks/Data/Services/lang_service.dart';
+import 'package:my_tasks/Data/Services/notification_service.dart';
 import 'package:my_tasks/Data/Services/util_service.dart';
 
 part 'tasks_event.dart';
@@ -81,19 +82,30 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
 
       String? json = await DBService.loadData(StorageKey.user);
       mainBloc.userModel = userFromJson(json!);
+      json = null;
       json = await DBService.loadData(StorageKey.task);
-      mainBloc.tasks = tasksFromJson(json!);
+      if (json != null) {
+        mainBloc.tasks = tasksFromJson(json);
+      } else {
+        mainBloc.tasks = [];
+      }
       await updateNotCompleted();
     }
   }
 
   Future<void> updateNotCompleted() async {
     for (var model in mainBloc.tasks) {
-      if (model.status == TaskStatus.inProcess && model.endDate!.isBefore(DateTime.now())) {
-        int i = mainBloc.tasks.indexOf(model);
-        model.status = TaskStatus.notCompleted;
-        mainBloc.tasks.removeAt(i);
-        mainBloc.tasks.insert(i, model);
+      if (model.status == TaskStatus.inProcess) {
+        // if (model.endDate!.isAfter(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 1))) {
+        //   NotificationService.showNotification('an_unfulfilled_task'.tr(), model.title!, 10, model.hashCode);
+        //   print(model.title);
+        // }
+        if (model.endDate!.isBefore(DateTime.now())) {
+          int i = mainBloc.tasks.indexOf(model);
+          model.status = TaskStatus.notCompleted;
+          mainBloc.tasks.removeAt(i);
+          mainBloc.tasks.insert(i, model);
+        }
       }
     }
     await DBService.saveTasks(mainBloc.tasks);
@@ -161,7 +173,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     DateTime selectedDate = DateTime(selectedYear, selectedMonth, selectedDay);
     for (var task in mainBloc.tasks) {
       if ((task.endDate!.isAfter(selectedDate) || task.endDate!.isAtSameMomentAs(selectedDate)) &&
-          (task.startDate!.isBefore(selectedDate) || task.startDate!.isAtSameMomentAs(selectedDate))) {
+          (task.createdTime!.isBefore(selectedDate) || task.createdTime!.isAtSameMomentAs(selectedDate))) {
         mainBloc.filterTasks.add(task);
       }
     }

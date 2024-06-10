@@ -1,7 +1,6 @@
 import 'dart:convert';
 enum TaskStatus {completed, inProcess, notCompleted}
 
-// List<TaskModel> tasksFromJson(String str) => jsonDecode(str).map((item) => TaskModel.fromJson(item)).toList<TaskModel>();
 List<TaskModel> tasksFromJson(String encodedData) {
   List<dynamic> decodedList = jsonDecode(encodedData);
   return decodedList.map((item) => TaskModel.fromJson(item)).toList();
@@ -14,7 +13,6 @@ class TaskModel {
     required this.title,
     required this.content,
     required this.createdTime,
-    required this.startDate,
     required this.endDate,
     required this.status,
   });
@@ -24,7 +22,6 @@ class TaskModel {
     title = json['title'];
     content = json['content'];
     createdTime = DateTime.parse(json['createdTime']);
-    startDate = DateTime.parse(json['startTime']);
     endDate = DateTime.parse(json['endTime']);
     status = switch (json['status']) {
       'completed' => TaskStatus.completed,
@@ -37,7 +34,6 @@ class TaskModel {
   String? title;
   String? content;
   DateTime? createdTime;
-  DateTime? startDate;
   DateTime? endDate;
   TaskStatus? status;
 
@@ -47,7 +43,6 @@ class TaskModel {
     map['title'] = title;
     map['content'] = content;
     map['createdTime'] = createdTime!.toIso8601String();
-    map['startTime'] = startDate!.toIso8601String();
     map['endTime'] = endDate!.toIso8601String();
     map['status'] = status!.name;
     return map;

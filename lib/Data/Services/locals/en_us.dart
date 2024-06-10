@@ -19,7 +19,7 @@ const Map<String, String> enUS = {
   'profile': 'Profile',
   'my_tasks_user': 'My Tasks User',
   'date_sign': 'Registration Date',
-  'current_lang': 'Uzbek (Latin)',
+  'current_lang': 'English (USA)',
   'cancel': 'Cancel',
   'done': 'Done',
   'back': 'Back',
@@ -45,6 +45,7 @@ const Map<String, String> enUS = {
   'minute': 'minute',
   'error_time': 'Cannot select a past time!',
   'task_saved': 'Task saved successfully',
+  'set_deadline': 'Set a deadline',
 
   /// TasksPage
   'tasks': 'Tasks',
@@ -76,6 +77,8 @@ const Map<String, String> enUS = {
   'apply_filter': 'Apply',
   'tasks_not_found': 'No tasks found',
   'delete': 'Delete',
+  'an_unfulfilled_task': 'An unfulfilled task',
+  'set_status': 'Select status!',
 
   /// SinglePage
   'delete_task': 'Delete Task',

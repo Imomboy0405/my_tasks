@@ -19,7 +19,7 @@ const Map<String, String> ruRU = {
   'profile': 'Профиль',
   'my_tasks_user': 'Пользователь My Tasks',
   'date_sign': 'Дата регистрации',
-  'current_lang': 'Узбекский (латиница)',
+  'current_lang': 'Русский',
   'cancel': 'Отмена',
   'done': 'Готово',
   'back': 'Назад',
@@ -32,7 +32,7 @@ const Map<String, String> ruRU = {
   /// NewPage
   'new': 'Создать',
   'title': 'Название',
-  'content': 'Комментарий',
+  'content': 'Описание',
   'save_task': 'Сохранить задачу',
   'new_task': 'Новая задача',
   'fill_all_forms': 'Заполните все поля!',
@@ -45,6 +45,7 @@ const Map<String, String> ruRU = {
   'minute': 'минута',
   'error_time': 'Нельзя выбрать прошедшее время!',
   'task_saved': 'Задача успешно сохранена',
+  'set_deadline': 'Установите крайний срок',
 
   /// TasksPage
   'tasks': 'Задачи',
@@ -76,6 +77,8 @@ const Map<String, String> ruRU = {
   'apply_filter': 'Применить',
   'tasks_not_found': 'Задачи не найдены',
   'delete': 'Удалить',
+  'an_unfulfilled_task': 'Невыполненная задача',
+  'set_status': 'Выберите статус!',
 
   /// SinglePage
   'delete_task': 'Удалить задачу',

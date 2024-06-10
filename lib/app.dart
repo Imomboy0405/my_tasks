@@ -32,7 +32,6 @@ class MyTasks extends StatelessWidget {
       title: 'My Tasks',
       supportedLocales: const [
         Locale('en', 'US'),
-        Locale('ru', 'RU'),
       ],
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AppColors.blue),
